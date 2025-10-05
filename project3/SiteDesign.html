@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Backyard Birds – Site Color Palette</title>
+<style>
+  :root{
+    --ink:#1b1e24;      /* main text */
+    --muted:#6b7c86;    /* subtle text, borders */
+    --accent:#b91515;   /* headings, rules, drop caps */
+    --link:#0b5e75;     /* normal links */
+    --link-visited:#4b2e83;
+    --bg:#e9f7fb;       /* page background */
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  h1{max-width:920px;margin:24px auto 8px;text-align:center}
+  .swatch{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;max-width:920px;margin:16px auto 24px;padding:0 16px}
+  .chip{border-radius:10px;box-shadow:0 0 0 1px rgba(0,0,0,.08) inset;padding:18px 12px;text-align:center;color:#fff}
+  .ink{background:var(--ink)}
+  .muted{background:var(--muted)}
+  .accent{background:var(--accent)}
+  .link{background:var(--link)}
+  .visited{background:var(--link-visited)}
+  .bg{background:var(--bg);color:#1b1e24;border:1px solid #cfd9e0}
+  small{display:block;opacity:.9}
+</style>
+</head>
+<body>
+  <h1>Backyard Birds – Project 3 Palette</h1>
+  <div class="swatch">
+    <div class="chip ink">#1B1E24<small>ink</small></div>
+    <div class="chip muted">#6B7C86<small>muted</small></div>
+    <div class="chip accent">#B91515<small>accent</small></div>
+    <div class="chip link">#0B5E75<small>link</small></div>
+    <div class="chip visited">#4B2E83<small>visited</small></div>
+    <div class="chip bg">#E9F7FB<small>background</small></div>
+  </div>
+  <p style="max-width:920px;margin:0 auto 24px;padding:0 16px">
+  </p>
+</body>
+</html>

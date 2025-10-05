@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Practice 6A – Tables</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1e2a1c;
+    --leaf:#5c8a49;
+    --leaf-dark:#466b30;
+    --panel:#f3ffe6;
+    --stripe:#f0a97e;
+  }
+  body{
+    margin:0;
+    padding:2rem 0 4rem;
+    background:#eef6df;
+    color:var(--ink);
+    font-family:"Crimson Text", Georgia, serif;
+  }
+  h1{
+    width:90%;
+    margin:0 auto 1rem;
+    font-size:2.2rem;
+  }
+  .bar{
+    width:90%;
+    margin:1.25rem auto .5rem;
+    background:var(--leaf-dark);
+    color:#fff;
+    border-radius:.5rem;
+    text-align:center;
+    letter-spacing:.25em;
+    padding:.6rem 0;
+    font-weight:700;
+  }
+  .wrap{
+    width:92%;
+    margin:0 auto 1rem;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--panel);
+    border-radius:.4rem;
+    overflow:hidden;
+  }
+  caption{
+    background:#cfe5b6;
+    padding:.6rem 0;
+    font-weight:700;
+  }
+  thead th{
+    background:var(--leaf);
+    color:#fff;
+    text-align:center;
+  }
+  th, td{
+    border:2px solid var(--leaf-dark);
+    padding:.6rem .8rem;
+    vertical-align:middle;
+  }
+  tbody td{
+    background:var(--stripe);
+  }
+  .center{text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Practice 6A</h1>
+
+<div class="bar">EXERCISE 8-1</div>
+<div class="wrap">
+  <table>
+    <caption>Beatles albums and release years</caption>
+    <thead>
+      <tr>
+        <th>Album</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Rubber Soul</td><td class="center">1965</td></tr>
+      <tr><td>Revolver</td><td class="center">1966</td></tr>
+      <tr><td>Sgt. Pepper's</td><td class="center">1967</td></tr>
+      <tr><td>The White Album</td><td class="center">1968</td></tr>
+      <tr><td>Abbey Road</td><td class="center">1969</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="bar">EXERCISE 8-2</div>
+<div class="wrap">
+  <table>
+    <caption>Sunday Evening TV Schedule</caption>
+    <thead>
+      <tr>
+        <th class="center">7:00pm</th>
+        <th class="center">7:30pm</th>
+        <th class="center">8:00pm</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>&nbsp;</td>
+        <td class="center">The Sunday Night Movie</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="center">Perry Mason</td>
+        <td class="center">Candid Camera</td>
+        <td class="center">What's My Line?</td>
+      </tr>
+      <tr>
+        <td class="center">Bonanza</td>
+        <td class="center" colspan="2">The Wackiest Ship in the Army</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="bar">EXERCISE 8-3</div>
+<div class="wrap">
+  <table>
+    <caption>Fruit Assortment</caption>
+    <thead>
+      <tr>
+        <th class="center">Apples</th>
+        <th class="center">–</th>
+        <th class="center">Pears</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="center">Apples</td>
+        <td class="center">Oranges</td>
+        <td class="center">Pears</td>
+      </tr>
+      <tr>
+        <td class="center">Bananas</td>
+        <td class="center">&nbsp;</td>
+        <td class="center">Pineapple</td>
+      </tr>
+      <tr>
+        <td class="center">Lychees</td>
+        <td class="center">&nbsp;</td>
+        <td class="center">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
