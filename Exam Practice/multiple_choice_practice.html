@@ -1,0 +1,438 @@
+```<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Web Coding – Practice Quiz</title>
+<style>
+  :root { --ok:#1a7f37; --bad:#b91c1c; --muted:#6b7280; }
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; line-height: 1.45; }
+  h1 { margin: 0 0 8px; }
+  .desc { color: var(--muted); margin-bottom: 18px; }
+  .q { border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; margin: 14px 0; }
+  .q h3 { margin: 0 0 10px; font-size: 16px; }
+  .opts { margin: 8px 0 10px; display: grid; gap: 8px; }
+  .opts label { display:flex; gap:10px; align-items: flex-start; cursor:pointer; }
+  .btns { display:flex; gap:8px; }
+  button { cursor:pointer; padding:6px 10px; border-radius:8px; border:1px solid #d1d5db; background:#fff; }
+  button:hover { background:#f3f4f6; }
+  .msg { margin-top:8px; font-weight:600; }
+  .ok { color: var(--ok); }
+  .bad { color: var(--bad); }
+  .muted { color: var(--muted); font-weight:400; }
+  .footer { margin-top: 22px; font-size: 14px; color: var(--muted); }
+  .chip { font-size:12px; padding:2px 8px; border-radius:999px; background:#f3f4f6; border:1px solid #e5e7eb; margin-left:6px; }
+</style>
+</head>
+<body>
+  <h1>Web Coding – Practice Quiz</h1>
+  <div class="desc">Click “Check” on any question to see if your current selection is correct (instant feedback). You can change your answer and click “Check” again at any time.</div>
+
+  <div id="quiz"></div>
+
+  <div class="footer">Tip: multi-select questions are marked with a <span class="chip">multi</span> badge.</div>
+
+<script>
+/* Fisher–Yates shuffle */
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
+
+/* ---------- DATA ---------- */
+/* type: "single" (radio) or "multi" (checkbox) */
+const QUESTIONS = [
+  /* ==== Quiz 1 — Matching converted to MCQ ==== */
+  { q: "What does “HTML” refer to?", type:"single",
+    options:[
+      "The markup language used for all web documents",
+      "The organization that monitors web technologies",
+      "Protocol for transferring web documents on the Internet",
+      "Internet Protocol"
+    ], correct:[0] },
+  { q: "What is the W3C?", type:"single",
+    options:[
+      "The organization that monitors web technologies",
+      "Particle physics lab where the Web was born",
+      "Home of Mosaic, the first graphical browser",
+      "Domain Name Server (matches domain names to IP addresses)"
+    ], correct:[0] },
+  { q: "What is CERN in the context of the Web?", type:"single",
+    options:[
+      "Particle physics lab where the Web was born",
+      "The organization that monitors web technologies",
+      "The location of a web document or resource (Uniform Resource Locator)",
+      "A limited set of letters, numbers, and symbols"
+    ], correct:[0] },
+  { q: "What does HTTP stand for conceptually?", type:"single",
+    options:[
+      "Protocol for transferring web documents on the Internet",
+      "Internet Protocol",
+      "Domain Name Server",
+      "Home of Mosaic, the first graphical browser"
+    ], correct:[0] },
+  { q: "What is IP?", type:"single",
+    options:[
+      "Internet Protocol",
+      "Protocol for transferring web documents",
+      "Domain Name Server",
+      "The location of a web document"
+    ], correct:[0] },
+  { q: "What is a URL?", type:"single",
+    options:[
+      "The location of a web document or resource (Uniform Resource Locator)",
+      "Internet Protocol",
+      "Organization that monitors web technologies",
+      "A limited set of letters, numbers, and symbols"
+    ], correct:[0] },
+  { q: "What is NCSA?", type:"single",
+    options:[
+      "Home of Mosaic, the first graphical browser",
+      "Particle physics lab where the Web was born",
+      "Organization that monitors web technologies",
+      "Domain Name Server"
+    ], correct:[0] },
+  { q: "What is DNS?", type:"single",
+    options:[
+      "Domain Name Server (matches domain names to IP addresses)",
+      "Protocol for transferring web documents",
+      "A limited set of letters, numbers, and symbols",
+      "The location of a web document or resource"
+    ], correct:[0] },
+  { q: "What is ASCII?", type:"single",
+    options:[
+      "A limited set of letters, numbers, and symbols",
+      "Internet Protocol",
+      "Organization that monitors web technologies",
+      "Home of Mosaic, the first graphical browser"
+    ], correct:[0] },
+
+  /* ==== Quiz 2 — HTML basics ==== */
+  { q:"These modify properties of an HTML tag:", type:"single",
+    options:["features","values","attributes","sequence regulators"], correct:[2] },
+  { q:"This application displays HTML pages on a client machine:", type:"single",
+    options:["the operating system","a text editor","a browser","a plug-in"], correct:[2] },
+  { q:"A computer that displays web pages is known as a/an …", type:"single",
+    options:["a client","web server","a file manager","hostess"], correct:[0] },
+  { q:"Graphic Designers on a web team usually add what expertise?", type:"single",
+    options:["Server-side database management","CGI script writing","Innovative use of color and fonts","Knowledge about the latest security techniques"], correct:[2] },
+  { q:"A basic web development skill all developers should have:", type:"single",
+    options:["Java Programming","CGI Programming","XML Programming","HTML Programming"], correct:[3] },
+  { q:"What protocol do browsers use to display web pages on the WWW?", type:"single",
+    options:["News","FTPS","HTTP","HTML"], correct:[2] },
+  { q:"How many levels of headings are available in HTML?", type:"single",
+    options:["3","5","6","unlimited"], correct:[2] },
+  { q:"The default file in a web site is named:", type:"single",
+    options:["basepage.htm","basic.htm","home.htm","index.htm"], correct:[3] },
+  { q:"The Internet …", type:"single",
+    options:[
+      "is a vast collection of supercomputers linked by optical fiber networks.",
+      "was a product of the Department of Defense’s search for a more secure network to nuclear attack.",
+      "was spearheaded by Al Gore.",
+      "is owned and operated by the US government."
+    ], correct:[1] },
+  { q:"Which developer would be most concerned with video compression techniques?", type:"single",
+    options:["CGI Programmers","Multimedia developers","HTML Programmers","Java Programmers"], correct:[1] },
+  { q:"To develop multimedia for the Web, what background helps most?", type:"single",
+    options:["Java Programming","Security Strategies","Video or Sound Mastering","Database Design"], correct:[2] },
+  { q:"This is a computer that responds to requests for web pages:", type:"single",
+    options:["a browser","a file manager","a web server","a router"], correct:[2] },
+  { q:"Which is NOT true of the <pre> tag?", type:"single",
+    options:[
+      "all the characters take up the same space",
+      "this is a block-level element",
+      "spacing between letters is kept",
+      "this is an empty tag"
+    ], correct:[3] },
+  { q:"HTML tags that have only a starting tag are called:", type:"single",
+    options:["Non-Empty","Non-linear tags","Inline tags","Self-Terminating tags"], correct:[3] },
+  { q:"When using an <ol> tag, which type value is NOT acceptable?", type:"single",
+    options:['type="disc"','type="A"','type="i"',"all the above"], correct:[0] },
+
+  /* ==== Quiz 3 — Web design / navigation ==== */
+  { q:"A private communication network is called a(n):", type:"single",
+    options:["TPS","SPAN","VPN","WAN"], correct:[2] },
+  { q:"Which describes an absolute URL?", type:"single",
+    options:[
+      "Use for internal links on the same page.",
+      "Full URL including protocol (http:// or https://), domain name, and path as necessary.",
+      "Use when linking to your own site.",
+      "Use when linking internally in the same document."
+    ], correct:[1] },
+  { q:"Which is NOT a good name for a link?", type:"single",
+    options:["Click Here","Wolverine Winners","FAQ","About Us"], correct:[0] },
+  { q:"Placing the most important content in the immediately viewable part of a page is:", type:"single",
+    options:["Under the covers","Above the fold","In the house","Front and center"], correct:[1] },
+  { q:"Where must pages be placed to be viewed on the WWW?", type:"single",
+    options:["On your C: drive","On a Web Server","In a relational database","On the UVU mail server"], correct:[1] },
+  { q:"The people most likely to view your site are your …", type:"single",
+    options:["frequent flyers","target audience","webbers","clientele"], correct:[1] },
+  { q:"To open a link in a new window/tab, use the ______ attribute.", type:"single",
+    options:["open","target","frame","new"], correct:[1] },
+  { q:"Design process that sketches placement of page content (borrowed from film):", type:"single",
+    options:["mimicking","distributed planning","plug and play","storyboarding"], correct:[3] },
+  { q:"Which error reflects badly on your intellect as a page creator?", type:"single",
+    options:["hidden anchors","overlapping images","spelling mistakes","use of acronyms"], correct:[2] },
+  { q:"Providing viewers a logical path through your site is known as:", type:"single",
+    options:["Kindness","Scent","Respondence","Travelogue"], correct:[1] },
+  { q:"Average number of clicks it should take a viewer to find what they need:", type:"single",
+    options:["1","3","5","no more than 10"], correct:[1] },
+  { q:"The viewable area of the browser window that can be seen without scrolling is known as:", type:"single",
+    options:["the workable surface area","the maximized measurement","the greatest common denominator","live space"],
+    correct:[3] },
+  { q:"Which is true about anchor tags?", type:"single",
+    options:[
+      "When linking to a fragment, use the # symbol before the fragment id name.",
+      "Anchors can have no text between opening and closing tags",
+      "Anchors are self-terminating tags",
+      "Anchors place the # symbol on your page when displayed"
+    ], correct:[0] },
+  { q:"This site navigation plan organizes pages in a sequential, horizontal manner:", type:"single",
+    options:["web","linear","hierarchical","deterministic"], correct:[1] },
+  { q:"Which attribute assigns a fragment identifier to an element?", type:"single",
+    options:["target","id","alt","href"], correct:[1] },
+
+  /* ==== Quiz 4 — CSS fundamentals ==== */
+  { q:"Which selector does NOT need “#” or “.” when used in CSS?", type:"single",
+    options:["ol","container","smoothe","foot"], correct:[0] },
+  { q:"Which of the following is a CSS property?", type:"single",
+    options:["float","#fff","150px","0 auto","center"], correct:[0] },
+  { q:"Given three rules p{color:red;} p{color:yellow;} p{color:blue;}, what color will paragraphs be?", type:"single",
+    options:["blue","red","white","none"], correct:[0] },
+  { q:"Proper way to apply the same style to many elements:", type:"single",
+    options:[
+      "h1, h2, p, img { border: 1px solid #999; }",
+      "h1 h2 p img { border: 1px solid #999; }",
+      "h1-h2-p-img { border: 1px solid #999; }",
+      "h1&h2&p&img { border: 1px solid #999; }"
+    ], correct:[0] },
+  { q:"Which property controls the font face used?", type:"single",
+    options:["font-family","text-font","color","font","font-style"], correct:[0] },
+  { q:"Which property changes the text size?", type:"single",
+    options:["font-size","font-weight","font-height","size"], correct:[0] },
+  { q:"Make UL list items inside #menu 20px:", type:"single",
+    options:[
+      "#menu ul li { font-size: 20px; }",
+      ".menu ul li { font-size: 20px; }",
+      "p { font-size: 20px; }",
+      "#head ul li { font-size: 20px; }",
+      "ol li { font-size: 20px; }"
+    ], correct:[0] },
+  { q:"Rule changes in: h1 { background-color: orange; color: teal; }", type:"single",
+    options:[
+      "setting the color of the background to orange",
+      "changing the font color to orange",
+      "putting 150 pixels of margin to the left",
+      "setting the text to bold",
+      "shortening the width of the container"
+    ], correct:[0] },
+  { q:"Which CSS rule centers your text?", type:"single",
+    options:[
+      "text-align: center;",
+      "text-align: left;",
+      "align: center;",
+      "text-margin: 0 auto;",
+      "letter-spacing: center;"
+    ], correct:[0] },
+  { q:"Which values are valid for text-indent? (Choose all that apply)", type:"multi",
+    options:["text-indent: 6em;","text-indent: 2em;","text-indent: 25%;","text-indent: 30px;"],
+    correct:[0,1,2,3] },
+  { q:"Selector to hold default properties for a whole page:", type:"single",
+    options:["body","span","div","html"], correct:[0] },
+  { q:"CSS properties are displayed the same in all browsers.", type:"single",
+    options:["True","False"], correct:[1] },
+  { q:"Which is NOT a link pseudo-class state in CSS?", type:"single",
+    options:["primary","visited","hover","active"], correct:[0] },
+  { q:"Change normal flow to left/right on a page with the ______ property.", type:"single",
+    options:["float","hover","insert","layer"], correct:[0] },
+  { q:"Special character used when creating a rule for a CSS class:", type:"single",
+    options:[".","&","#","!"], correct:[0] },
+
+  /* ==== Quiz 5 — Color & graphics ==== */
+  { q:"True (24-bit) color is made of what three parts?", type:"single",
+    options:["CMYB","RGB","Millions of colors","BWG"], correct:[1] },
+  { q:"Which color represents the natural world and is calming/soothing?", type:"single",
+    options:["Red","Green","Purple","Orange"], correct:[1] },
+  { q:"On the Web, colors are given by name or by their ______ value.", type:"single",
+    options:["ASCII number","Hexadecimal number","Binary number","Octal number"], correct:[1] },
+  { q:"When adding color for emphasis, which advice should guide you?", type:"single",
+    options:["do not repeat marquees forever","let color be your guide","less is more","if it bleeds, it leads"], correct:[2] },
+  { q:"Compression with no information loss is called …", type:"single",
+    options:["superior","lossy","lossless","inclusive"], correct:[2] },
+  { q:"How can you optimize loading a graphic?", type:"single",
+    options:[
+      "specify the graphic format in the alt attribute",
+      "use only GIF formatted images",
+      "provide the exact width and height of the image",
+      "use a percent value for the width"
+    ], correct:[2] },
+  { q:"Which CSS pseudo-class lets you modify a link on mouse-over?", type:"single",
+    options:["a:link","a:hover","a:active","a:switch"], correct:[1] },
+  { q:"What makes links/text hard to read on a page?", type:"single",
+    options:["using sans-serif fonts","bad choice of a background color","using black text","nesting tables"], correct:[1] },
+  { q:"Which color symbolizes love, sex, and excitement?", type:"single",
+    options:["Yellow","Red","Violet/Purple","Black"], correct:[1] },
+  { q:"Which attribute supplies the filename of an image to display?", type:"single",
+    options:["title","src","alt","file"], correct:[1] },
+  { q:"When are contextual selectors applied?", type:"single",
+    options:[
+      "when the style attribute is used with a tag",
+      "when the class attribute is used with a tag",
+      "when the correct nesting of HTML tags is used that matches the selector",
+      "any time any of the tags in the selector appear in any order"
+    ], correct:[2] },
+  { q:"Which generic font-family has small adornments at character ends?", type:"single",
+    options:["fantasy","serif","sans-serif","plaintext"], correct:[1] },
+  { q:"Property to move a block of text left/right/center between margins:", type:"single",
+    options:["text-shift","align","text-align","text-span"], correct:[2] },
+  { q:"Common element selector used to define default styles for an entire page:", type:"single",
+    options:["body","head","wrapper","container"], correct:[0] },
+  { q:"Which is NOT an element selector in a CSS stylesheet?", type:"single",
+    options:[".bigtext","h3","body","p"], correct:[0] },
+
+  /* ==== Quiz 6 — Tables ==== */
+  { q:"bgcolor on <table> is deprecated. Which CSS property sets a table’s background color?", type:"single",
+    options:["background-image","color","background-color","back-color"], correct:[2] },
+  { q:"What table attribute controls the thickness of the box around the table?", type:"single",
+    options:[
+      "edge",
+      "border",
+      "The border attribute of <table> is not supported in HTML5. Use CSS instead.",
+      "rules"
+    ], correct:[2] },
+  { q:"Cellpadding controls …", type:"single",
+    options:[
+      "the amount of space between adjacent table cells.",
+      "the thickness of the table border.",
+      "the amount of space between the edges of a cell and its contents.",
+      "angry inmates during a riot at a prison."
+    ], correct:[2] },
+  { q:"Which attribute sets how many columns a cell spans?", type:"single",
+    options:["width","spanning","colspan","width or height"], correct:[2] },
+  { q:"How do you create flexible-width tables?", type:"single",
+    options:[
+      'Setting the table border="dynamic"',
+      "Using % with width values",
+      'Setting the table adjustable="true"',
+      "Flexible sized tables are not possible"
+    ], correct:[1] },
+  { q:"CSS property to align a table left or right:", type:"single",
+    options:["align","vertical-align","float","lock-frame"], correct:[2] },
+  { q:"Tables are made up of what kinds of HTML tags?", type:"single",
+    options:["rows and columns","rows of cells","columns of cells","cells only"], correct:[1] },
+  { q:"Most appropriate use of a table in web design:", type:"single",
+    options:[
+      "indent paragraphs for the entire page",
+      "hold tabular data",
+      "structure page layout",
+      "create a page template"
+    ], correct:[1] },
+  { q:"One way to express table width:", type:"single",
+    options:["hexadecimal number","number of bits","inches","percentage"], correct:[3] },
+  { q:"Priority of styles in tables (highest → lowest):", type:"single",
+    options:[
+      "table, row, cell",
+      "row, cell, table",
+      "cell, row, table",
+      "table, cell, row"
+    ], correct:[2] },
+  { q:"Attribute that specifies how many rows a cell spans:", type:"single",
+    options:["width","rowspan","colspan","height"], correct:[1] },
+  { q:"Does HTML5 support the valign attribute on <td>?", type:"single",
+    options:["No","Maybe","Yes","Sometimes"], correct:[0] },
+  { q:"HTML tag to define columns with specific widths within a table:", type:"single",
+    options:["<colgroup>","<caption>","<columns>","<span>"], correct:[0] },
+  { q:"Rows can be grouped into three sections: <thead>, <tfoot>, and …", type:"single",
+    options:["<tbody>","<tmain>","<ttext>","<tcontent>"], correct:[0] },
+  { q:"The number of rows in a table is determined by …", type:"single",
+    options:["the number of <tr> tags","the height and width of the table.","the number of <td> tags.","the number of <tbody> tags."], correct:[0] },
+  { q:"When nesting a table inside another, where must the inner table be placed to validate?", type:"single",
+    options:["in a <th> or <td> tag","in a <tr> tag","in the <table> tag","in a <tbody> tag"], correct:[0] }
+];
+
+/* ---------- RENDER (with randomized answers) ---------- */
+const quiz = document.getElementById("quiz");
+
+QUESTIONS.forEach((it, idx) => {
+  const qEl = document.createElement("div");
+  qEl.className = "q";
+  const title = document.createElement("h3");
+  title.innerHTML = `Question ${idx+1}${it.type==="multi" ? ' <span class="chip">multi</span>' : ''}`;
+  qEl.appendChild(title);
+
+  const prompt = document.createElement("div");
+  prompt.textContent = it.q;
+  qEl.appendChild(prompt);
+
+  // Build option objects with correctness, then shuffle
+  const items = it.options.map((text, i) => ({
+    text,
+    isCorrect: it.correct.includes(i)
+  }));
+  shuffle(items);
+
+  const opts = document.createElement("div");
+  opts.className = "opts";
+
+  items.forEach((item, i) => {
+    const label = document.createElement("label");
+    const input = document.createElement("input");
+    input.type = it.type === "multi" ? "checkbox" : "radio";
+    input.name = `q${idx}`;
+    input.dataset.correct = item.isCorrect ? "1" : "0";
+    const span = document.createElement("span");
+    span.textContent = item.text;
+    label.appendChild(input);
+    label.appendChild(span);
+    opts.appendChild(label);
+  });
+  qEl.appendChild(opts);
+
+  const btns = document.createElement("div");
+  btns.className = "btns";
+
+  const checkBtn = document.createElement("button");
+  checkBtn.textContent = "Check";
+  btns.appendChild(checkBtn);
+
+  const clearBtn = document.createElement("button");
+  clearBtn.textContent = "Clear";
+  btns.appendChild(clearBtn);
+
+  const msg = document.createElement("div");
+  msg.className = "msg muted";
+  msg.textContent = "—";
+  qEl.appendChild(btns);
+  qEl.appendChild(msg);
+
+  checkBtn.addEventListener("click", () => {
+    const inputs = [...opts.querySelectorAll("input")];
+    const picked = inputs.filter(x => x.checked);
+    if (picked.length === 0) {
+      msg.className = "msg bad";
+      msg.textContent = "Select an option first.";
+      return;
+    }
+    const totalCorrect = inputs.filter(x => x.dataset.correct === "1").length;
+    const pickedAreAllCorrect = picked.every(x => x.dataset.correct === "1");
+    const correctCountMatch = picked.length === totalCorrect;
+
+    const isCorrect = pickedAreAllCorrect && correctCountMatch;
+    msg.className = "msg " + (isCorrect ? "ok" : "bad");
+    msg.textContent = isCorrect ? "Correct ✔" : "Try again ✘";
+  });
+
+  clearBtn.addEventListener("click", () => {
+    [...opts.querySelectorAll("input")].forEach(x => x.checked = false);
+    msg.className = "msg muted";
+    msg.textContent = "—";
+  });
+
+  quiz.appendChild(qEl);
+});
+</script>
+</body>
+</html>

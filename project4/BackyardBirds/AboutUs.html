@@ -25,6 +25,14 @@ span.drop{float:left;width:.7em;font-size:280%;font-family:"CherishingMoments", 
 .clear{clear:both}
 .small{font-size:.95rem}
 ul{margin-top:6px}
+
+/* Project 4 – table styles */
+table.data{width:100%;border-collapse:collapse;margin:14px 0;font-size:1rem}
+table.data caption{font:700 24px/1.1 "CherishingMoments", Georgia, serif;color:#fff;background:var(--rule);padding:.6rem 1rem;border-radius:10px 10px 0 0;letter-spacing:.5px}
+table.data thead th{background:#7a1030;color:#fff;text-align:left;padding:.6rem .8rem;border-bottom:3px solid #5a0b22}
+table.data tbody td{background:#ffffff;border:2px solid #d8a1a1;padding:.55rem .8rem}
+table.data tbody tr:nth-child(even) td{background:#f8f2f2}
+table.data tfoot td{background:#efe3e3;font-weight:700}
 </style>
 </head>
 <body>
@@ -65,6 +73,25 @@ ul{margin-top:6px}
   <li>California gulls</li>
   <li>Canada geese at sunrise</li>
 </ul>
+
+<table class="data" aria-describedby="today">
+  <caption>Featured Calendar Pictures</caption>
+  <thead>
+    <tr>
+      <th scope="col">Type of Bird</th>
+      <th scope="col">Month</th>
+      <th scope="col">Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Rufous Hummingbirds</td><td>January</td><td>2014</td></tr>
+    <tr><td>Great Blue Herons</td><td>February</td><td>2014</td></tr>
+    <tr><td>American Bald Eagles</td><td>June</td><td>2014</td></tr>
+    <tr><td>Baltimore Orioles</td><td>December</td><td>2014</td></tr>
+    <tr><td>California Seagulls</td><td>March</td><td>2015</td></tr>
+    <tr><td>Lazuli Buntings</td><td>April</td><td>2015</td></tr>
+  </tbody>
+</table>
 
 <p><a href="#top">Return to Top</a></p>
 <div class="clear"></div>
