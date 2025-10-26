@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Exercise 16-2 – Flexible Online Menu</title><style>
+*{box-sizing:border-box}body{margin:0;font:16px system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#fff3d6;color:#2b1b0f}
+.header{padding:16px 24px;background:#6a4e23;color:#fff}
+.menu{display:flex;flex-wrap:wrap;gap:16px;padding:24px;max-width:1100px;margin:auto}
+.item{flex:1 1 260px;display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.thumb{width:72px;height:72px;border-radius:10px;background:#f6c55b}
+.name{font-weight:700;margin:0}
+.price{margin-left:auto;font-weight:700}
+.desc{margin:4px 0 0 0;color:#5d4930;font-size:14px}
+</style></head><body>
+<header class="header"><h1>Leahy’s Bees — Menu</h1></header>
+<section class="menu">
+  <article class="item"><div class="thumb"></div><div style="flex:1 1 auto"><p class="name">Wildflower Honey <span class="price">$9</span></p><p class="desc">Raw, unfiltered, 12oz jar.</p></div></article>
+  <article class="item"><div class="thumb"></div><div style="flex:1 1 auto"><p class="name">Clover Honey <span class="price">$8</span></p><p class="desc">Smooth and classic.</p></div></article>
+  <article class="item"><div class="thumb"></div><div style="flex:1 1 auto"><p class="name">Comb & Jar Set <span class="price">$14</span></p><p class="desc">Chunk of comb with 8oz jar.</p></div></article>
+  <article class="item"><div class="thumb"></div><div style="flex:1 1 auto"><p class="name">Bee Pollen <span class="price">$11</span></p><p class="desc">Granules, 4oz.</p></div></article>
+  <article class="item"><div class="thumb"></div><div style="flex:1 1 auto"><p class="name">Propolis Tincture <span class="price">$18</span></p><p class="desc">Natural extract.</p></div></article>
+</section>
+</body></html>

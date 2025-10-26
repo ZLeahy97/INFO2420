@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Exercise 16-3 – Adjusting Flex and Order</title><style>
+*{box-sizing:border-box}body{margin:0;font:16px system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.wrap{display:flex;gap:16px;flex-wrap:wrap;padding:16px;background:#fff3d6}
+.box{padding:20px;border-radius:12px;color:#fff;font-weight:700;text-align:center}
+.a{background:#6a4e23;flex:1 1 240px;order:2}
+.b{background:#c58c45;flex:2 1 320px;order:1}
+.c{background:#f6c55b;color:#2b1b0f;flex:1 1 240px;order:3}
+@media (min-width:900px){
+  .a{order:1;flex:1 1 240px}
+  .b{order:2;flex:3 1 420px}
+  .c{order:3;flex:1 1 240px}
+}
+</style></head><body>
+<section class="wrap">
+  <div class="box a">A</div>
+  <div class="box b">B</div>
+  <div class="box c">C</div>
+</section>
+</body></html>
