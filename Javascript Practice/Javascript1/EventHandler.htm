@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript – Event Handlers</title>
+  <script type="text/javascript">
+    function MsgBox(text) {
+      alert(text);
+      document.getElementById("msg").value = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>Event Handler Demo</h1>
+  <form>
+    <input id="msg" type="text" placeholder="Type something">
+    <input type="button" value="Show Me" onclick="MsgBox(document.getElementById('msg').value)">
+  </form>
+</body>
+</html>
+

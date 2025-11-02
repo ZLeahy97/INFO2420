@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript – Image Swap</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; }
+    #thumbs img { width: 140px; height: auto; margin: 6px; cursor: pointer; border: 2px solid #ddd; }
+    #thumbs img:hover { border-color: #555; }
+    #theImage { margin-top: 12px; }
+    #theImage img { max-width: 520px; height: auto; display: block; }
+  </style>
+  <script type="text/javascript">
+
+    const imagePath = "Images/Fullsize/";
+    const imgArray = [
+      "CoupleEveningLg.jpg",
+      "CoupleSailingLg.jpg",
+      "HamsterLg.jpg",
+      "PigLg.jpg",
+      "SaladLg.jpg",
+      "StorkLg.jpg"
+    ];
+    const titleArray = [
+      "Evening Stroll",
+      "Day on the Water",
+      "Hamster Thinking",
+      "Pig & Pal",
+      "Salad Time",
+      "Stork at Sunset"
+    ];
+
+    const preloaded = [];
+    function preloadImages() {
+      for (let i = 0; i < imgArray.length; i++) {
+        preloaded[i] = new Image();
+        preloaded[i].src = imagePath + imgArray[i];
+      }
+    }
+
+    function swapImage(index) {
+      const large = document.getElementById("large");
+      const caption = document.getElementById("bottomText");
+      large.src = imagePath + imgArray[index];
+      caption.innerHTML = titleArray[index];
+    }
+  </script>
+</head>
+<body onload="preloadImages()">
+  <h1>Image Swap</h1>
+
+  <div id="thumbs">
+    <img src="Images/Thumbnails/CoupleEveningSm.jpg" alt="Evening" onmouseover="swapImage(0)">
+    <img src="Images/Thumbnails/CoupleSailingSm.jpg" alt="Sailing" onmouseover="swapImage(1)">
+    <img src="Images/Thumbnails/HamsterSm.jpg" alt="Hamster" onmouseover="swapImage(2)">
+    <img src="Images/Thumbnails/PigSm.jpg" alt="Pig" onmouseover="swapImage(3)">
+    <img src="Images/Thumbnails/SaladSm.jpg" alt="Salad" onmouseover="swapImage(4)">
+    <img src="Images/Thumbnails/StorkSm.jpg" alt="Stork" onmouseover="swapImage(5)">
+  </div>
+
+  <div id="theImage">
+    <img id="large" src="Images/Fullsize/CoupleEveningLg.jpg" alt="Large preview">
+    <h3 id="bottomText">Evening Stroll</h3>
+  </div>
+</body>
+</html>
+
+

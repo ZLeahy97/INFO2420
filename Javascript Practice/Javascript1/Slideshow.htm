@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Season Slideshow</title>
+  <style>
+    .flashclass { width: 420px; height: 280px; margin: 24px auto; text-align:center; }
+    .flashclass img { max-width: 100%; height: auto; display:block; margin: 0 auto; }
+    .flashclass .caption { margin-top: 8px; font: 16px/1.3 Arial, sans-serif; }
+  </style>
+
+  <script src="transitionshow.js"></script>
+</head>
+<body>
+  <div id="myslideshow" class="flashclass"></div>
+
+  <script>
+
+    var show = new flashyslideshow({
+      wrapperid: "myslideshow",
+      wrapperclass: "flashclass",
+      imagearray: [
+        ["Images/Slideshow/autumn.jpg","","","Autumn"],
+        ["Images/Slideshow/spring.jpg","","","Spring"],
+        ["Images/Slideshow/summer.jpg","","","Summer"],
+        ["Images/Slideshow/winter.jpg","","","Winter"]
+      ],
+      pause: 2500,
+      transduration: 1000
+    });
+  </script>
+</body>
+</html>
+
+
+
+

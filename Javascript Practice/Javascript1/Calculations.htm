@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript – Calculations & Prompts</title>
+  <script type="text/javascript">
+
+    var secs_per_min = 60;
+    var mins_per_hour = 60;
+    var hours_per_day = 24;
+    var days_per_year = 365;
+    var secs_per_year = secs_per_min * mins_per_hour * hours_per_day * days_per_year;
+
+    function runMadLib() {
+      var person = prompt("Enter a person's name:");
+      var place  = prompt("Enter a place:");
+      var thing  = prompt("Enter an object:");
+      var action = prompt("Enter a verb ending in -ing:");
+
+      document.writeln("<h2>Mad Lib</h2>");
+      document.writeln(person + " went to " + place + " with a " + thing +
+                       " while " + action + ".<br><br>");
+    }
+  </script>
+</head>
+<body onload="runMadLib()">
+  <h1>Calculations</h1>
+  <script type="text/javascript">
+    document.writeln("Seconds in a year: " + secs_per_year + "<br>");
+  </script>
+  <p>Refresh the page to run the prompts again.</p>
+</body>
+</html>
+
+
