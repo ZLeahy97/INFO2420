@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leahy’s Bees – Project 6 Graphics</title>
+<style>
+:root{--body-bg:#f5e3bf;--text:#2b1b0f}
+html,body{height:100%}
+body{margin:0;background:var(--body-bg) center top repeat-y url("Images/background1.jpg");font:16px Arial,Helvetica,sans-serif;color:var(--text);text-align:center}
+.wrap{max-width:900px;margin:24px auto}
+.print,.logo{margin:16px auto}
+#thumbs,#image{width:700px;border:1px solid #000;margin:0 auto;color:#000;background:#eee;padding:5px}
+#thumbs{margin-top:10px}
+#thumbs img{border:1px solid #000;margin:5px;vertical-align:middle;cursor:pointer}
+#image{height:400px;display:flex;align-items:center;justify-content:center}
+.caption{margin-top:8px;font-weight:700}
+</style>
+<script>
+function preloadImages(){
+  ["Images/print2.png","Images/Logo2.png","Images/Bee1.jpg","Images/bee2.jpg","Images/bee3.jpg","Images/bee4.jpg"].forEach(s=>{const i=new Image();i.src=s;});
+}
+function swapMain(src,cap){
+  const img=document.getElementById("mainimg");
+  img.src=src; img.alt=cap;
+  document.getElementById("caption").textContent=cap;
+}
+</script>
+</head>
+<body onload="preloadImages()">
+<div class="wrap">
+  <div class="print">
+    <a href="#" onmouseover="document.getElementById('print').src='Images/print2.png';" onmouseout="document.getElementById('print').src='Images/print1.png';">
+      <img id="print" src="Images/print1.png" alt="Print Page" width="200" height="50">
+    </a>
+  </div>
+  <div class="logo">
+    <a href="#" onmouseover="document.getElementById('logo').src='Images/Logo2.png';" onmouseout="document.getElementById('logo').src='Images/Logo1.png';">
+      <img id="logo" src="Images/Logo1.png" alt="Leahy’s Bees Logo" width="150" height="175">
+    </a>
+  </div>
+  <div id="thumbs">
+    <img src="Images/Bee1.jpg" alt="Bee1" width="120" height="80" onmouseover="swapMain('Images/Bee1.jpg','Beenatomy')">
+    <img src="Images/bee2.jpg" alt="bee2" width="120" height="80" onmouseover="swapMain('Images/bee2.jpg','Bee Pollen')">
+    <img src="Images/bee3.jpg" alt="bee3" width="120" height="80" onmouseover="swapMain('Images/bee3.jpg','Hungry Bees')">
+    <img src="Images/bee4.jpg" alt="bee4" width="120" height="80" onmouseover="swapMain('Images/bee4.jpg','Curious Bee')">
+  </div>
+  <div id="image">
+    <img id="mainimg" src="Images/Bee1.jpg" alt="Bee 1" style="max-width:100%;max-height:100%">
+  </div>
+  <div id="caption" class="caption">Bee 1</div>
+</div>
+</body></html>
+
