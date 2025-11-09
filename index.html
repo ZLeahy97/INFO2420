@@ -1,84 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Zach Leahy's Home Page</title>
-<style type="text/css">
-@font-face{
-  font-family: 'Bendable';
-  src: url('practice4b/CSS3Fonts/fonts/bendable.eot');
-  src: local('Bendable'), url('practice4b/CSS3Fonts/fonts/bendable.ttf') format('truetype');
-}
-.name{
-  font-family: Bendable, Geneva, serif;
-}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  @font-face{
+    font-family: "Bendable";
+    src: url("practice4b/CSS3Fonts/fonts/bendable.eot");
+    src: local("Bendable"),
+         url("practice4b/CSS3Fonts/fonts/bendable.ttf") format("truetype");
+  }
+
+  :root{
+    --card-bg: rgba(255,255,255,0.88);
+    --ink: #1f1f1f;
+    --muted: #5b5b5b;
+    --accent: #8a6b00;
+    --ring: #e2e2e2;
+  }
+
+  /* page background */
+  html, body { height: 100%; }
+  body{
+    margin: 0;
+    color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f3e8c8 url("background1.jpg") center top repeat-y fixed;
+  }
+
+  /* centered card */
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 32px 18px 48px;
+  }
+  .card{
+    background: var(--card-bg);
+    border: 1px solid var(--ring);
+    border-radius: 14px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+    padding: 28px 22px;
+    backdrop-filter: saturate(1.1) blur(1.5px);
+  }
+
+  h1, h2{ margin: 0 0 .35rem; text-align: center; }
+  h1{ font-size: 2rem; letter-spacing: .02em; }
+  .name{ font-family: Bendable, Georgia, serif; font-size: 2.15rem; letter-spacing: .04em; }
+
+  .sub{ text-align:center; color: var(--muted); margin: 0 0 1.25rem; }
+
+  hr{
+    height: 1px; border: none;
+    background: linear-gradient(to right, transparent, var(--ring), transparent);
+    margin: 1.25rem auto;
+  }
+
+  /* link blocks */
+  .group{ margin: 1rem 0 1.75rem; }
+  .links{
+    list-style: none; padding: 0; margin: .25rem 0 0;
+    display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center;
+  }
+  .links a{
+    display: inline-block;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--ring);
+    border-radius: 10px;
+    padding: .5rem .75rem;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .links a:hover{
+    transform: translateY(-1px);
+    border-color: #d8c27a;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  }
+
+  @media (min-width: 900px){
+    .card{ padding: 36px 34px; }
+  }
 </style>
 </head>
-
 <body>
-<h1>Home Page for <span class="name">Zach Leahy</span></h1>
-<hr />
+  <div class="wrap">
+    <div class="card">
+      <h1>Home Page for <span class="name">Zach Leahy</span></h1>
+      <p class="sub">INFO 2420 Fall 2025</p>
 
-<h2>Projects</h2>
-<a href="project1/project1.htm">Project 1: Web Site Critiques</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project2/AboutUs.html">Project 2 (About Us)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project2/Tributes.html">Project 2 (Tribute)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project3/BackyardBirds/AboutUs.html">Project 3 (About Us)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project3/BackyardBirds/Tributes.html">Project 3 (Tribute)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project4/BackyardBirds/AboutUs.html">Project 4 (Table)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project5/index.html">Project 5 (Imagemap)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project5/graphics.html">Project 5 (Graphics)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="project6/graphics-1.htm">Project 6 (Javascript/Resources)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<hr />
+      <hr>
 
-<h2>Practice Assignments</h2>
-<a href="practice1a/bistro.html">Practice 1A (Bistro)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice1b/FAQ.html">Practice 1B (FAQ)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice2/cactus.html">Practice 2 (Cactus)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice3b/glossary.html">Practice 3B (Glossary)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice3/index.html">Practice 3 (Using Links)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice4a/index.html">Practice 4A (Styles)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice4b/CSS3Fonts/CSS3Fonts.html">Practice 4B (Fonts)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice5/index.html">Practice 5 (Images)</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice5b/bistro.html">Practice 5B</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice6a/index.html">Practice 6A</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="practice 6b/table.html">Practice 6B</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="Javascript Practice/Javascript.html">Javascript</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="work-with-html-text/html-text/rendered-index.html">Practice: Add Content To Your Web Pages</a>
+      <div class="group">
+        <h2>Projects</h2>
+        <ul class="links">
+          <li><a href="project1/project1.htm">Project 1: Web Site Critiques</a></li>
+          <li><a href="project2/AboutUs.html">Project 2 (About Us)</a></li>
+          <li><a href="project2/Tributes.html">Project 2 (Tribute)</a></li>
+          <li><a href="project3/BackyardBirds/AboutUs.html">Project 3 (About Us)</a></li>
+          <li><a href="project3/BackyardBirds/Tributes.html">Project 3 (Tribute)</a></li>
+          <li><a href="project4/BackyardBirds/AboutUs.html">Project 4 (Table)</a></li>
+          <li><a href="project5/index.html">Project 5 (Imagemap)</a></li>
+          <li><a href="project5/graphics.html">Project 5 (Graphics)</a></li>
+          <li><a href="project6/graphics-1.htm">Project 6 (Javascript/Resources)</a></li>
+        </ul>
+      </div>
 
-<hr />
+      <hr>
 
-<h2>Book Assignments</h2>
-<a href="Flexbox Practice/exercise16-1.html">Ch. 16-1</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="Flexbox Practice/exercise16-2.html">Ch. 16-2</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="Flexbox Practice/exercise16-3.html">Ch. 16-3</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
+      <div class="group">
+        <h2>Practice Assignments</h2>
+        <ul class="links">
+          <li><a href="practice1a/bistro.html">Practice 1A (Bistro)</a></li>
+          <li><a href="practice1b/FAQ.html">Practice 1B (FAQ)</a></li>
+          <li><a href="practice2/cactus.html">Practice 2 (Cactus)</a></li>
+          <li><a href="practice3b/glossary.html">Practice 3B (Glossary)</a></li>
+          <li><a href="practice3/index.html">Practice 3 (Using Links)</a></li>
+          <li><a href="practice4a/index.html">Practice 4A (Styles)</a></li>
+          <li><a href="practice4b/CSS3Fonts/CSS3Fonts.html">Practice 4B (Fonts)</a></li>
+          <li><a href="practice5/index.html">Practice 5 (Images)</a></li>
+          <li><a href="practice5b/bistro.html">Practice 5B</a></li>
+          <li><a href="practice6a/index.html">Practice 6A</a></li>
+          <li><a href="practice 6b/table.html">Practice 6B</a></li>
+          <li><a href="Javascript Practice/Javascript.html">Javascript</a></li>
+          <li><a href="work-with-html-text/html-text/rendered-index.html">Practice: Add Content To Your Web Pages</a></li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="group">
+        <h2>Book Assignments</h2>
+        <ul class="links">
+          <li><a href="Flexbox Practice/exercise16-1.html">Ch. 16-1</a></li>
+          <li><a href="Flexbox Practice/exercise16-2.html">Ch. 16-2</a></li>
+          <li><a href="Flexbox Practice/exercise16-3.html">Ch. 16-3</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
-
-
-
-
