@@ -1,0 +1,56 @@
+/* --- PRINT STYLESHEET --- */
+
+/* Make background white and text readable */
+body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: "Times New Roman", serif;
+    font-size: 14px;
+}
+
+/* Make the main site container full width */
+#container {
+    width: 100% !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+}
+
+/* Header and section also full width */
+header, section {
+    width: 100% !important;
+}
+
+/* Hide navigation in print */
+nav {
+    display: none !important;
+}
+
+/* Article takes most of the width */
+article {
+    width: 95% !important;
+    margin: 0 auto;
+    float: none !important;
+}
+
+/* Hide footer when printing */
+footer {
+    display: none !important;
+}
+
+/* Remove borders on images for clean printing */
+img {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Prevent big background images in print */
+#thumbs,
+#image {
+    background: none !important;
+}
+
+/* Improve caption printing */
+.caption {
+    font-weight: bold;
+    margin-top: 5px;
+}
